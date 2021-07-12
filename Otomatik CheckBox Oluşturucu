@@ -1,0 +1,29 @@
+sub checkBoxOlustur()
+Dim rng As Range
+Dim torow As Long
+Dim lastrow As Long
+
+Dim myleft As Double
+Dim mytop As Double
+
+Dim myheigth As Double
+Dim mywidth As Double
+
+Application.ScreenUpdating = False
+lastrow = 720
+For Each rng In Selection
+myleft = rng.Left
+mytop = rng.Top
+myheigth = rng.Height
+mywidth = rng.Width / 2
+
+ActiveSheet.CheckBoxes.Add(myleft, mytop, mywidth, myheigth).Select
+With Selection
+.Left = rng.Left - 8 + (rng.Width / 2)
+.Caption = ""
+.Value = xlOff
+.LinkedCell = rng.Address
+.Display3DShading = False
+End With
+Next rng
+end sub
